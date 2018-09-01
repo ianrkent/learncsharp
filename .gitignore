@@ -12,3 +12,9 @@ package-lock.json
 .sass-cache
 css/reveal.min.css
 js/reveal.min.js
+
+# .NET projects 
+[Dd]ebug
+[Rr]elease
+[Oo]bj
+
