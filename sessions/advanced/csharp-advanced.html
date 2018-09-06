@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSharp - Advanced</title>
+
+		<link rel="stylesheet" href="../../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../../reveal/css/theme/sky.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../../reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal/css/print/pdf.css' : '../../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+    </head>
+    
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <section><h2>Some Coding Styles</h2></section>
+                    <section data-transition="none">
+                        <h4>Property definitions - backing field</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            <mark>private decimal _balance = 0;</mark>
+                            <mark>private string _holderName;</mark>
+                            &nbsp;
+                            public decimal Balance { 
+                                get { return _balance; } 
+                            }
+                            &nbsp;
+                            public string HolderName { 
+                                get { return _holderName; } 
+                                set { _holderName = value; } 
+                            }
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - Backing Field</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            private decimal _balance = 0;
+                            private string _holderName;
+                            &nbsp;
+                            public decimal Balance { 
+                                <mark>get { return _balance; } </mark>
+                            }
+                            &nbsp;
+                            public string HolderName { 
+                                <mark>get { return _holderName; }</mark> 
+                                <mark>set { _holderName = value; }</mark>
+                            }
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - Auto Field</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            public decimal Balance { 
+                                <mark>get; </mark>
+                            }
+                            &nbsp;
+                            public string HolderName { 
+                                <mark>get;</mark> 
+                                <mark>set;</mark>
+                            }
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - Auto-Properties</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                public decimal Balance { <mark>get; </mark> }
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                public string HolderName { <mark>get; set;</mark> }
+                                &nbsp;    
+                                &nbsp;    
+                                &nbsp;
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - Auto-Properties</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                                &nbsp;
+                                public decimal Balance { get; }
+                                public string HolderName { get; set; }
+                                &nbsp;
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - Expression body definitions</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            private decimal _balance = 0;
+                            private string _holderName;
+
+                            public decimal Balance {
+                                get <mark>=></mark> _balance;
+                            }
+                            
+                            public  string HolderName { 
+                                get <mark>=></mark> _holderName; 
+                                set <mark>=></mark> _holderName = value; 
+                            }
+                        </code></pre>
+                        <aside class="notes">
+                            - only single expression
+                            - no return statement needed
+                        </aside>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - Expression body definitions</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            private decimal _balance = 0;
+                            private string _holderName;
+
+                            public decimal Balance <mark>=></mark> _balance;
+                                
+                            
+                            
+                            public  string HolderName { 
+                                get <mark>=></mark> _holderName; 
+                                set <mark>=></mark> _holderName = value; 
+                            }
+                        </code></pre>
+                        <aside class="notes">
+                            Shortcut syntax if only a getter needed
+                        </aside>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Property definitions - default values</h4>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            
+                        </code></pre>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="../../reveal/lib/js/head.min.js"></script>
+		<script src="../../reveal/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: '../../reveal/plugin/markdown/marked.js' },
+					{ src: '../../reveal/plugin/markdown/markdown.js' },
+					{ src: '../../reveal/plugin/notes/notes.js', async: true },
+					{ src: '../../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ],
+                slideNumber: 'c/t'
+			});
+		</script>
+	</body>
+</html>

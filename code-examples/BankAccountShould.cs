@@ -8,9 +8,9 @@ namespace code_examples
         [Fact]
         public void ReduceBalanceWhenWithdrawing()
         {
-            var sut = new BankAccount(50);
-            sut.Withdraw(20);
-            Assert.Equal(30, sut.Balance);
+            // var sut = new BankAccount(50);
+            // sut.Withdraw(20);
+            // Assert.Equal(30, sut.Balance);
         }
     }
 }
