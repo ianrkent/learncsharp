@@ -1,0 +1,8 @@
+﻿{
+  "profiles": {
+    "localserver": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5000"
+    }
+  }
+}

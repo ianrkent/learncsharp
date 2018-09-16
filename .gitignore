@@ -1,1 +1,3 @@
 play/**/*
+localserver/bin
+localserver/obj
