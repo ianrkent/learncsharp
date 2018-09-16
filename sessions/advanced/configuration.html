@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSharp - Advanced</title>
+
+		<link rel="stylesheet" href="../../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../../reveal/css/theme/sky.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../../reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal/css/print/pdf.css' : '../../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+    </head>
+    
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <section><h2>Configuration</h2></section>
+                    <section><h3>Why use configuration?</h3>
+                        <aside class="notes">
+                            <ul>
+                                <li>Environments differ (access keys, service locations etc).  Different config in different environments)</li>
+                                <li>Business levers - Want to change behaviour of the app, without rebuilding and deploying the code</li>
+                                <li> Kitchen - currencies accepted, maximum order size, opening and closing times, acceptable timeframe for delivering meals</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>Configuration using .NET Framework</h4>
+                        <h5>Where is config stored?</h5>
+                        <p>Typically in the applications App.config or Web.Config</p>
+                        <!-- <ul>
+                            <li></li>
+                            <li>Accessed through the `ConfigurationManager`  in the `System.Configuration` namespace (and assembly)</li>
+                            <li>ConfigurationManager.AppSettings</li>
+                            <li>ConfigurationManager.ConnectionStrings</li>
+                            <li>Specify your own section of Name / Value pairs</li>
+                            <li>Custom configuration section (more power, more coding)</li>
+                        </ul> -->
+                        <aside class="notes">
+                           <p>XML files</p>
+                           <p>deployed with the applications</p>
+                           <p>Transform process to different env</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>Configuration using .NET Framework</h4>
+                        <h5>How do you access the config?</h5>
+                        <p>Using the <code>ConfigurationManager</code> in the <code>System.Configuration</code> namespace</p>
+                        <p>Access the application settings via <code>ConfigurationManager.AppSettings</code></p>
+                        <p>Access the connection strings via <code>ConfigurationManager.ConnectionStrings</code></p>
+                    
+                        <aside class="notes">
+                            <p><strong>AppSettings</strong> and <strong>ConnectionString</strong> object <strong>single instance, multi threaded and cached</strong> - perf reasons</p>
+                            <p><strong>Name/Value pairs are always strings.</strong>  No validation.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h4>Configuration using .NET Framework</h4>
+                        <h5>Better organised configuration</h5>
+                        <p>Specify your own section of Key Value pairs</p>
+                        <p>Custom configuration section (more power, more coding)</p>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="../../reveal/lib/js/head.min.js"></script>
+		<script src="../../reveal/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+                    { src: '../../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../reveal/plugin/notes/notes.js', async: true },
+					{ src: '../../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ],
+                slideNumber: 'c/t'
+			});
+		</script>
+	</body>
+</html>

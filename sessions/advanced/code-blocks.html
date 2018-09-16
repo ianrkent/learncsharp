@@ -26,6 +26,89 @@
 		<div class="reveal">
 			<div class="slides">
                 <section>
+                    <section><h2>Lamdas</h2></section>
+                    <section data-transition="none">
+                        <h4>Examples</h4>
+                        <pre><code data-trim data-noescape>
+                            <mark>Action</mark> greet = () => Console.Write("Wotcha");
+                            <mark>Action<string></mark> talk = (msg) => Console.Write(msg);
+                            <mark>Func<int, int, double></mark> divide = (numerator, denominator) =>
+                                    numerator * 1.0 / denominator;
+                            <mark>Func<int, int></mark> sumSequence = num => {
+                                var counter = 0;
+                                for (int i = 1; i == num; i++) {
+                                    counter += num;
+                                }
+                                return counter;
+                            };
+
+                            greet();
+                            talk($"15 divided by 3 is { divide(15, 3) }");
+                            talk($"The sum of all numbers to 150 is { sumSequence(150) }");
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Examples</h4>
+                        <pre><code data-trim data-noescape>
+                            Action greet = <mark>()</mark> <mark>=></mark> Console.Write("Wotcha");
+                            Action<string> talk = <mark>(msg)</mark> <mark>=></mark> Console.Write(msg);
+                            Func<int, int, double> divide = (numerator, denominator) =>
+                                    numerator * 1.0 / denominator;
+                            Func<int, int> sumSequence = num => {
+                                var counter = 0;
+                                for (int i = 1; i == num; i++) {
+                                    counter += num;
+                                }
+                                return counter;
+                            };
+
+                            greet();
+                            talk($"15 divided by 3 is { divide(15, 3) }");
+                            talk($"The sum of all numbers to 150 is { sumSequence(150) }");
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Examples</h4>
+                        <pre><code data-trim data-noescape>
+                            Action greet = () => Console.Write("Wotcha");
+                            Action<string> talk = (msg) => Console.Write(msg);
+                            Func<int, int, double> divide = (numerator, denominator) =>
+                                    numerator * 1.0 / denominator;
+                            Func<int, int> sumSequence = num => {
+                                var counter = 0;
+                                for (int i = 1; i == num; i++) {
+                                    counter += num;
+                                }
+                                return counter;
+                            };
+
+                            greet();
+                            talk($"15 divided by 3 is { divide(15, 3) }");
+                            talk($"The sum of all numbers to 150 is { sumSequence(150) }");
+                        </code></pre>
+                    </section>
+                    <section data-transition="none">
+                        <h4>Examples</h4>
+                        <pre><code data-trim data-noescape>
+                            Action greet = <mark>() => Console.Write("Wotcha");</mark>
+                            Action<string> talk = (msg) => Console.Write(msg);
+                            Func<int, int, double> divide = (numerator, denominator) =>
+                                    numerator * 1.0 / denominator;
+                            Func<int, int> sumSequence = num => {
+                                var counter = 0;
+                                for (int i = 1; i == num; i++) {
+                                    counter += num;
+                                }
+                                return counter;
+                            };
+
+                            greet();
+                            talk($"15 divided by 3 is { divide(15, 3) }");
+                            talk($"The sum of all numbers to 150 is { sumSequence(150) }");
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
                     <section><h2>Some Coding Styles</h2></section>
                     <section data-transition="none">
                         <h4>Property definitions - backing field</h4>
@@ -101,7 +184,7 @@
                         </code></pre>
                     </section>
                     <section data-transition="none">
-                        <h4>Property definitions - Expression body definitions</h4>
+                        <h4>Property definitions - Expression bodys</h4>
                         <pre><code class="hljs" data-trim data-noescape>
                             private decimal _balance = 0;
                             private string _holderName;
@@ -121,7 +204,7 @@
                         </aside>
                     </section>
                     <section data-transition="none">
-                        <h4>Property definitions - Expression body definitions</h4>
+                        <h4>Property definitions - Expression bodys</h4>
                         <pre><code class="hljs" data-trim data-noescape>
                             private decimal _balance = 0;
                             private string _holderName;
