@@ -25,10 +25,10 @@
                         <h4>Examples</h4>
                         <pre><code data-trim data-noescape>
                             Action greet = <mark>()</mark> <mark>=></mark> Console.Write("Wotcha");
-                            Action<string> talk = <mark>(msg)</mark> <mark>=></mark> Console.Write(msg);
-                            Func<int, int, double> divide = (numerator, denominator) =>
+                            Action&lt;string&gt; talk = <mark>(msg)</mark> <mark>=></mark> Console.Write(msg);
+                            Func&lt;int, int, double&gt; divide = (numerator, denominator) =>
                                     numerator * 1.0 / denominator;
-                            Func<int, int> sumSequence = num => {
+                            Func&lt;int, int&gt; sumSequence = num => {
                                 var counter = 0;
                                 for (int i = 1; i == num; i++) {
                                     counter += num;
@@ -45,10 +45,10 @@
                         <h4>Examples</h4>
                         <pre><code data-trim data-noescape>
                             Action greet = () => Console.Write("Wotcha");
-                            Action<string> talk = (msg) => Console.Write(msg);
-                            Func<int, int, double> divide = (numerator, denominator) =>
+                            Action&lt;string&gt; talk = (msg) => Console.Write(msg);
+                            Func&lt;int, int, double&gt; divide = (numerator, denominator) =>
                                     numerator * 1.0 / denominator;
-                            Func<int, int> sumSequence = num => {
+                            Func&lt;int, int&gt; sumSequence = num => {
                                 var counter = 0;
                                 for (int i = 1; i == num; i++) {
                                     counter += num;
@@ -65,10 +65,10 @@
                         <h4>Examples</h4>
                         <pre><code data-trim data-noescape>
                             Action greet = <mark>() => Console.Write("Wotcha");</mark>
-                            Action<string> talk = (msg) => Console.Write(msg);
-                            Func<int, int, double> divide = (numerator, denominator) =>
+                            Action&lt;string&gt; talk = (msg) => Console.Write(msg);
+                            Func&lt;int, int, double&gt; divide = (numerator, denominator) =>
                                     numerator * 1.0 / denominator;
-                            Func<int, int> sumSequence = num => {
+                            Func&lt;int, int&gt; sumSequence = num => {
                                 var counter = 0;
                                 for (int i = 1; i == num; i++) {
                                     counter += num;
