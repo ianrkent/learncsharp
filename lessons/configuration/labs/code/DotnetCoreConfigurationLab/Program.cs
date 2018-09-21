@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace DotnetCoreConfigurationLab
 {
@@ -6,7 +7,14 @@ namespace DotnetCoreConfigurationLab
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.ReadLine();
+        }
+
+        private static void DisplayConfig(IConfiguration config)
+        {
+            Console.WriteLine(
+                $"Minimum order amount : { config["minOrderAmountForDelivery"] } \n" +
+                $"The DB connection string : { config["theDatabaseConnectionString"] }");
         }
     }
 }

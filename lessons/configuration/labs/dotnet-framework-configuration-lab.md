@@ -8,10 +8,14 @@ By completing this lab, you will practice
 - Reading custom configuration settings
 - Creating your own structure of configuration, and reading it
 
+----------------------------------------------------------
+
 ## Reading simple config values
 
 - Open the solution  in [code/DotnetFrameworkConfigurationLab](code/DotnetFrameworkConfigurationLab/DotnetFrameworkConfigurationLab.sln)
 - Use `ConfigurationManager.AppSettings` and `ConfigurationManager.ConnectionStrings` to read the config and return the *minimum Order Delivery value* and the *connection string to MyDatabase*
+
+----------------------------------------------------------
 
 ## Reading key/value pairs from a named section
 
@@ -42,6 +46,8 @@ So here we have defined a section group, called **RestaurantConfiguration** whic
 - Complete the function that gets the minumum points for a loyalty level, by useing `ConfigurationManager.GetSection` to get an object representing the **LoyaltyLevel** section.  Use `"RestaurantConfiguration/LoyaltyLevel"` which is in the format `"<group name>/<section name>"`
 
 > Hint: The retrieved section will be of type `NameValueCollection` and you will need to type cast it. You can use the `NameValueCollection` like a dictionary, accessing items using the index accessor (eg: `mySection["Gold"]`). This returns a string, which you will need to Parse to an integer eg: `int.TryParse("4556", out int myIntVariable)`
+
+----------------------------------------------------------
 
 ## Reading custom defined configuration structure, from a named section
 
@@ -133,6 +139,8 @@ We will now create a number of classes, that will allow the .NET Configuration s
 - Complete the function that gets the opening times for a day. Use `ConfigurationManager.GetSection` with section name `"RestaurantConfiguration/OpeningTimes"` to get an object of type `OpeningTimesConfigurationSection` (which you will need to type cast)
 
 > Hint: The retrieved section will be of type `NameValueCollection` and you will need to type cast it. You can use the `NameValueCollection` like a dictionary, accessing items using the index accessor (eg: `mySection["Gold"]`). This returns a string, which you will need to Parse to an integer eg: `int.TryParse("4556", out int myIntVariable)`
+
+----------------------------------------------------------
 
 ## If you are feeling confident
 

@@ -1,4 +1,4 @@
 {
-    "MinOrderAmountForDelivery" : 15,
-    "TheDatabaseConnectionString" : "defined in mySettings.json"
+    "minOrderAmountForDelivery" : 15,
+    "theDatabaseConnectionString" : "defined in mySettings.json"
 }
