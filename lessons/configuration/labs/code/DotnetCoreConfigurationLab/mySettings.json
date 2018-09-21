@@ -1,0 +1,4 @@
+{
+    "MinOrderAmountForDelivery" : 15,
+    "TheDatabaseConnectionString" : "defined in mySettings.json"
+}

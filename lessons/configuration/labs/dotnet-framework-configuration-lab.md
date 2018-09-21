@@ -134,14 +134,14 @@ We will now create a number of classes, that will allow the .NET Configuration s
 
 > Hint: The retrieved section will be of type `NameValueCollection` and you will need to type cast it. You can use the `NameValueCollection` like a dictionary, accessing items using the index accessor (eg: `mySection["Gold"]`). This returns a string, which you will need to Parse to an integer eg: `int.TryParse("4556", out int myIntVariable)`
 
-## If you are feeling confident...
+## If you are feeling confident
 
 Add another collection of days to the config, that represents days of the year when the restaurant is closed!
 
 Configuration to indicate the restaurant is closed on new years and christmas day would look like this
 
 ``` xml
-  <RestaurantConfiguration> 
+  <RestaurantConfiguration>
     <OpeningTimes>
       <Days>
         <Day dayOfWeek="Monday" openFrom="08:00" openTo="13:00" />
