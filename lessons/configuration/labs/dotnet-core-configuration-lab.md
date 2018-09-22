@@ -89,7 +89,7 @@ Now the configuration is setup to also load environment variables into the confi
 - Open the properties of the `DotnetCoreConfigurationLab` project, by right clicking it in the solution explorer and selecting `Properties`
 - In the `Debug` tab, add an environment variable with the key `theDatabaseConnectionString` and a value of `DB Connection String from Environment Variables`
 
-![](visual-studio-set-env-variable.png)
+![VS set env variables](visual-studio-set-env-variable.png)
 
 This will create a `Properties/launchSettings.json` file and create profile a entry in it, which will list the environment variables to set when using that profile.
 
@@ -129,7 +129,7 @@ DB connection string DB Connection String from Environment Variables
 
 ## Override values with Command Line arguments
 
-- Update the setup of your configuration to add the command line arguments into the configuration, by calling `AddCommandLine(args)`. 
+- Update the setup of your configuration to add the command line arguments into the configuration, by calling `AddCommandLine(args)`.
 
 ``` csharp
 IConfiguration config = new ConfigurationBuilder()
@@ -139,9 +139,7 @@ IConfiguration config = new ConfigurationBuilder()
     .Build();
 ```
 
-Now the configuration will also be loaded with key/value pairs sent in as command line arguements when running the app. 
-
-
+Now the configuration will also be loaded with key/value pairs sent in as command line arguements when running the app.
 
 - Update the `launchSettings.json` file to specify a command line argument for the `theDatabaseConnectionString` key.
 

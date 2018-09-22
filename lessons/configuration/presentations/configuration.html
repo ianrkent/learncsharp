@@ -1,185 +1,184 @@
+<section>
+    <section><h2>Configuration</h2></section>
+    <section><h3>Why use configuration?</h3>
+        <aside class="notes">
+            <p> pose the question to the class</p>
+            <ul>
+                <li>Environments differ (access keys, service locations etc).  Different config in different environments)</li>
+                <li>Business levers - Want to change behaviour of the app, without rebuilding and deploying the code</li>
+                <li>Kitchen - currencies accepted, maximum order size, opening and closing times, acceptable timeframe for delivering meals</li>
+            </ul>
+        </aside>
+    </section>
+    <section>
+        <h3>Configuration using .NET Framework</h3>
+        <p>Where is config stored?</p>
 
-                <section>
-                    <section><h2>Configuration</h2></section>
-                    <section><h3>Why use configuration?</h3>
-                        <aside class="notes">
-                            <p> pose the question to the class</p>
-                            <ul>
-                                <li>Environments differ (access keys, service locations etc).  Different config in different environments)</li>
-                                <li>Business levers - Want to change behaviour of the app, without rebuilding and deploying the code</li>
-                                <li>Kitchen - currencies accepted, maximum order size, opening and closing times, acceptable timeframe for delivering meals</li>
-                            </ul>
-                        </aside>
-                    </section>
-                    <section>
-                        <h3>Configuration using .NET Framework</h3>
-                        <p>Where is config stored?</p>
+        <div class="fragment fade-left">
+            Typically in the applications <code>App.config</code> or <code>Web.config</code>
+            <pre><code data-trim data-noescape>
+            &lt;appSettings&gt;
+                &lt;add key="Currency" value="USD" /&gt;
+                &lt;add key="MaxOrderAmount" value="250" /&gt;
+            &lt;/appSettings&gt;
+            &lt;connectionStrings&gt;
+                &lt;add name="TheDatabase" 
+                    providerName="System.Data.ProviderName" 
+                    connectionString="Valid Connection String;" /&gt;  
+            &lt;/connectionStrings&gt;
+            </code></pre>
+        </div>
+        <aside class="notes">
+            <p>These are XML files</p>
+            <p>Deployed with the applications</p>
+            <p>Transform can modify config to a different env</p>
+        </aside>
+    </section>
+    <section>
+        <h3>Configuration using .NET Framework</h3>
+        <p>How do you access the config?</p>
 
-                        <div class="fragment fade-left">
-                            Typically in the applications <code>App.config</code> or <code>Web.config</code>
-                            <pre><code data-trim data-noescape>
-                            &lt;appSettings&gt;
-                                &lt;add key="Currency" value="USD" /&gt;
-                                &lt;add key="MaxOrderAmount" value="250" /&gt;
-                            &lt;/appSettings&gt;
-                            &lt;connectionStrings&gt;
-                                &lt;add name="TheDatabase" 
-                                    providerName="System.Data.ProviderName" 
-                                    connectionString="Valid Connection String;" /&gt;  
-                            &lt;/connectionStrings&gt;
-                            </code></pre>
-                        </div>
-                        <aside class="notes">
-                           <p>These are XML files</p>
-                           <p>Deployed with the applications</p>
-                           <p>Transform can modify config to a different env</p>
-                        </aside>
-                    </section>
-                    <section>
-                        <h3>Configuration using .NET Framework</h3>
-                        <p>How do you access the config?</p>
+        <div class="fragment fade-left">
+            <p>Using the <code>ConfigurationManager</code> in the <code>System.Configuration</code> namespace</p>
+            <pre><code data-trim>
+            using System.Configuration;
 
-                        <div class="fragment fade-left">
-                            <p>Using the <code>ConfigurationManager</code> in the <code>System.Configuration</code> namespace</p>
-                            <pre><code data-trim>
-                            using System.Configuration;
+            var currency = ConfigurationManager.AppSettings["Currency"];
+            var maxOderAmount = 
+                ConfigurationManager.AppSettings["MaxOrderAmount"] as integer;
+            var myDbConnectionString =
+                    ConfigurationManager.ConnectionStrings["TheDatabase"].ConnectionString;
+            </code></pre>
+        </div>
+        <aside class="notes">
+            <p>Access the application settings via <code>ConfigurationManager.AppSettings</code></p>
+            <p>Access the connection strings via <code>ConfigurationManager.ConnectionStrings</code></p>
+            <p><strong>AppSettings</strong> and <strong>ConnectionString</strong> object <strong>single instance, multi threaded and cached</strong> - perf reasons</p>
+            <p><strong>Name/Value pairs are always strings.</strong>  No validation.</p>
+        </aside>
+    </section>
+    <section>
+        <h3>Configuration using .NET Framework</h3>
+        <p>Can't we have a better organised configuration?<span class="fragment float-left">Something more than just <strong>key/value pairs of strings?</strong></span></p>
+    </section>
+    <section data-transition="none">
+            <pre><code data-trim data-noescape>
+                    &lt;RestaurantConfiguration&gt;
+                        &lt;Currencies&gt;
+                            &lt;add key="GBP" value="true"&gt;
+                            &lt;add key="EUR" value="false"&gt;
+                        &lt;/Currencies&gt;
+                    
+                        &lt;OpeningTimes&gt;
+                            &lt;Day dayOfWeek="Tuesday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Wednesday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Thursday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Friday" openFrom="11:00" openTo="23:00" /&gt;
+                            &lt;Day dayOfWeek="Saturday" openFrom="08:00" openTo="23:00" /&gt;
+                            &lt;Day dayOfWeek="Sunday" openFrom="08:00" openTo="17:00" /&gt;
+                        &lt;/OpeningTimes&gt;
+                    &lt;/RestaurantConfiguration&gt;
+            </code></pre>
+    </section>
+    <section data-transition="none">
+            <pre><code data-trim data-noescape>
+                    &lt;RestaurantConfiguration&gt;
+                        <mark>&lt;Currencies&gt;
+                            &lt;add key="GBP" value="true"&gt;
+                            &lt;add key="EUR" value="false"&gt;
+                        &lt;/Currencies&gt;</mark>
+                    
+                        &lt;OpeningTimes&gt;
+                            &lt;Day dayOfWeek="Tuesday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Wednesday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Thursday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Friday" openFrom="11:00" openTo="23:00" /&gt;
+                            &lt;Day dayOfWeek="Saturday" openFrom="08:00" openTo="23:00" /&gt;
+                            &lt;Day dayOfWeek="Sunday" openFrom="08:00" openTo="17:00" /&gt;
+                        &lt;/OpeningTimes&gt;
+                    &lt;/RestaurantConfiguration&gt;
+            </code></pre>
+    </section>
+    <section data-transition="none">
+            <pre><code data-trim data-noescape>
+                    &lt;RestaurantConfiguration&gt;
+                        &lt;Currencies&gt;
+                            &lt;add key="GBP" value="true"&gt;
+                            &lt;add key="EUR" value="false"&gt;
+                        &lt;/Currencies&gt;
+                    
+                        <mark>&lt;OpeningTimes&gt;
+                            &lt;Day dayOfWeek="Tuesday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Wednesday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Thursday" openFrom="11:00" openTo="22:00" /&gt;
+                            &lt;Day dayOfWeek="Friday" openFrom="11:00" openTo="23:00" /&gt;
+                            &lt;Day dayOfWeek="Saturday" openFrom="08:00" openTo="23:00" /&gt;
+                            &lt;Day dayOfWeek="Sunday" openFrom="08:00" openTo="17:00" /&gt;
+                        &lt;/OpeningTimes&gt;</mark>
+                    &lt;/RestaurantConfiguration&gt;
+            </code></pre>
+    </section>
+    <section>
+        <h3>Configuration using .NET Framework</h3>
+        <p>Define your sections in the config file</p>
+        <pre><code class="hljs" data-trim>
+            &lt;configSections&gt;     
+                &lt;sectionGroup name="RestaurantConfiguration"&gt;  
+                    &lt;section name="Currencies" type="System.Configuration.NameValueSectionHandler"/&gt;  
+                    &lt;section name="OpeningTimes" type="MyAssembly.DayOpeningTimes, MyAssembly"/&gt;  
+                &lt;/sectionGroup&gt;  
+            &lt;/configSections&gt;  
+        </code></pre>
+        <div class="fragment fade-left">
+            <p>And pick out the section in your code</p>
+            <pre><code class="hljs">ConfigurationManager.GetSection("&lt;section name&gt;")</code></pre>
+        </div>
+    </section>
 
-                            var currency = ConfigurationManager.AppSettings["Currency"];
-                            var maxOderAmount = 
-                                ConfigurationManager.AppSettings["MaxOrderAmount"] as integer;
-                            var myDbConnectionString =
-                                 ConfigurationManager.ConnectionStrings["TheDatabase"].ConnectionString;
-                            </code></pre>
-                        </div>
-                        <aside class="notes">
-                            <p>Access the application settings via <code>ConfigurationManager.AppSettings</code></p>
-                            <p>Access the connection strings via <code>ConfigurationManager.ConnectionStrings</code></p>
-                            <p><strong>AppSettings</strong> and <strong>ConnectionString</strong> object <strong>single instance, multi threaded and cached</strong> - perf reasons</p>
-                            <p><strong>Name/Value pairs are always strings.</strong>  No validation.</p>
-                        </aside>
-                    </section>
-                    <section>
-                        <h3>Configuration using .NET Framework</h3>
-                        <p>Can't we have a better organised configuration?<span class="fragment float-left">Something more than just <strong>key/value pairs of strings?</strong></span></p>
-                    </section>
-                    <section data-transition="none">
-                            <pre><code data-trim data-noescape>
-                                    &lt;RestaurantConfiguration&gt;
-                                        &lt;Currencies&gt;
-                                            &lt;add key="GBP" value="true"&gt;
-                                            &lt;add key="EUR" value="false"&gt;
-                                        &lt;/Currencies&gt;
-                                    
-                                        &lt;OpeningTimes&gt;
-                                            &lt;Day dayOfWeek="Tuesday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Wednesday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Thursday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Friday" openFrom="11:00" openTo="23:00" /&gt;
-                                            &lt;Day dayOfWeek="Saturday" openFrom="08:00" openTo="23:00" /&gt;
-                                            &lt;Day dayOfWeek="Sunday" openFrom="08:00" openTo="17:00" /&gt;
-                                        &lt;/OpeningTimes&gt;
-                                    &lt;/RestaurantConfiguration&gt;
-                            </code></pre>
-                    </section>
-                    <section data-transition="none">
-                            <pre><code data-trim data-noescape>
-                                    &lt;RestaurantConfiguration&gt;
-                                        <mark>&lt;Currencies&gt;
-                                            &lt;add key="GBP" value="true"&gt;
-                                            &lt;add key="EUR" value="false"&gt;
-                                        &lt;/Currencies&gt;</mark>
-                                    
-                                        &lt;OpeningTimes&gt;
-                                            &lt;Day dayOfWeek="Tuesday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Wednesday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Thursday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Friday" openFrom="11:00" openTo="23:00" /&gt;
-                                            &lt;Day dayOfWeek="Saturday" openFrom="08:00" openTo="23:00" /&gt;
-                                            &lt;Day dayOfWeek="Sunday" openFrom="08:00" openTo="17:00" /&gt;
-                                        &lt;/OpeningTimes&gt;
-                                    &lt;/RestaurantConfiguration&gt;
-                            </code></pre>
-                    </section>
-                    <section data-transition="none">
-                            <pre><code data-trim data-noescape>
-                                    &lt;RestaurantConfiguration&gt;
-                                        &lt;Currencies&gt;
-                                            &lt;add key="GBP" value="true"&gt;
-                                            &lt;add key="EUR" value="false"&gt;
-                                        &lt;/Currencies&gt;
-                                    
-                                        <mark>&lt;OpeningTimes&gt;
-                                            &lt;Day dayOfWeek="Tuesday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Wednesday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Thursday" openFrom="11:00" openTo="22:00" /&gt;
-                                            &lt;Day dayOfWeek="Friday" openFrom="11:00" openTo="23:00" /&gt;
-                                            &lt;Day dayOfWeek="Saturday" openFrom="08:00" openTo="23:00" /&gt;
-                                            &lt;Day dayOfWeek="Sunday" openFrom="08:00" openTo="17:00" /&gt;
-                                        &lt;/OpeningTimes&gt;</mark>
-                                    &lt;/RestaurantConfiguration&gt;
-                            </code></pre>
-                    </section>
-                    <section>
-                        <h3>Configuration using .NET Framework</h3>
-                        <p>Define your sections in the config file</p>
-                        <pre><code class="hljs" data-trim>
-                            &lt;configSections&gt;     
-                                &lt;sectionGroup name="RestaurantConfiguration"&gt;  
-                                    &lt;section name="Currencies" type="System.Configuration.NameValueSectionHandler"/&gt;  
-                                    &lt;section name="OpeningTimes" type="MyAssembly.DayOpeningTimes, MyAssembly"/&gt;  
-                                &lt;/sectionGroup&gt;  
-                            &lt;/configSections&gt;  
-                        </code></pre>
-                        <div class="fragment fade-left">
-                            <p>And pick out the section in your code</p>
-                            <pre><code class="hljs">ConfigurationManager.GetSection("&lt;section name&gt;")</code></pre>
-                        </div>
-                    </section>
+    <section  data-background="images/demo-background.jpg">
+        <h2>LAB</h2>
+        <h4>Configuration in .NET Framework</h4>
+    </section>
 
-                    <section  data-background="images/demo-background.jpg">
-                        <h2>LAB</h2>
-                        <h4>Configuration in .NET Framework</h4>
-                    </section>
+    <section>
+        <h3>Configuration in .NET Core</h3>
+        <p>Where is the config stored?</p>
+        
+        <div class="fragment fade-left">
+            Multiple sources, powered by different <Strong>configuration providers</Strong>. Eg:
+            <ul>
+                <li>Json files, XML files</li>
+                <li>Environment variables</li>
+                <li>Command line arguments</li>
+                <li>Others.. just need a provider</li>
+            </ul>                    
+        </div>
+    </section>
 
-                    <section>
-                        <h3>Configuration in .NET Core</h3>
-                        <p>Where is the config stored?</p>
-                        
-                        <div class="fragment fade-left">
-                            Multiple sources, powered by different <Strong>configuration providers</Strong>. Eg:
-                            <ul>
-                                <li>Json files, XML files</li>
-                                <li>Environment variables</li>
-                                <li>Command line arguments</li>
-                                <li>Others.. just need a provider</li>
-                            </ul>                    
-                        </div>
-                    </section>
+    <section>
+        <h3>Configuration in .NET Core</h3>
+        <h4>Setting up the config</h4>
+        <ul>
+            <li>Use a <code>IConfigurationBuilder</code> to build up your config hierarchy</li>
+            <li>Configuration sources are loaded sequentially</li>
+            <li>Previously read configuration can be <strong>overridden</strong></li>
+        </ul>
+        <pre><code data-trim>
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional:true, reloadOnChange:true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args)
+                .Build();
+        </code></pre>
+        <aside class="notes">
+            <p>>Go through the hierachy in the code, outlining how the command line ->  env variables -> json file <strong>overrides</strong></p>
+            <p>The result of the build is an <strong>IConfiguration</strong></p>
+        </aside>
+    </section>
 
-                    <section>
-                        <h3>Configuration in .NET Core</h3>
-                        <h4>Setting up the config</h4>
-                        <ul>
-                            <li>Use a <code>IConfigurationBuilder</code> to build up your config hierarchy</li>
-                            <li>Configuration sources are loaded sequentially</li>
-                            <li>Previously read configuration can be <strong>overridden</strong></li>
-                        </ul>
-                        <pre><code data-trim>
-                            IConfiguration config = new ConfigurationBuilder()
-                                .AddJsonFile("appsettings.json", optional:true, reloadOnChange:true)
-                                .AddEnvironmentVariables()
-                                .AddCommandLine(args)
-                                .Build();
-                        </code></pre>
-                        <aside class="notes">
-                            <p>>Go through the hierachy in the code, outlining how the command line ->  env variables -> json file <strong>overrides</strong></p>
-                            <p>The result of the build is an <strong>IConfiguration</strong></p>
-                        </aside>
-                    </section>
+    <section data-background="images/demo-background.jpg">
+        <h2>LAB</h2>
+        <h4>Configuration in .NET Core</h4>
+    </section>
 
-                    <section data-background="images/demo-background.jpg">
-                        <h2>LAB</h2>
-                        <h4>Configuration in .NET Core</h4>
-                    </section>
-    
-                </section>
+</section>
