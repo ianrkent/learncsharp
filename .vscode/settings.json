@@ -1,0 +1,8 @@
+{
+    "markdownlint.ignore": [
+        "reveal/**"
+    ],
+    "markdownlint.config": {
+        "MD029": false
+    }
+}

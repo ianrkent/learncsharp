@@ -161,7 +161,7 @@ Now the configuration will also be loaded with key/value pairs sent in as comman
 dotnet run theDatabaseConnectionString=FromCommandLineArgs
 ```
 
-#### The results
+### The results
 
 You should see the following output to the console.
 
@@ -169,6 +169,5 @@ You should see the following output to the console.
 Minimum order amount : 15
 The DB connection string : FromCommandLineArgs
 ```
-
 
 The command line argument for `theDatabaseConnectionString` has overridden the values specifed in both the environment variable, and the `mySettings.json` file - while the `minOrderAmountForDelivery` value is still coming from `mySettings.json`
