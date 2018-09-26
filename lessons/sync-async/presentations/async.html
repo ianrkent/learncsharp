@@ -13,7 +13,46 @@
     <section data-background-video="images/sync-swimmers.mp4">
         <h3>This is how I thought about "syncronous"</h3>
         <aside class="notes">
-            
+            <p>Syncronised swimming, right! and Syncronous learning (this - the classroom - is syncronous learning)</p>
+            <p>This is more parallel programming - multiple threads</p>
+        </aside>
+    </section>
+    <section>
+        <h3>Actually</h3>
+        <h4>It's all about HOW communication occurs</h4>
+        <aside class="notes">
+            <ul>
+                <li><strong>Demonstrate asynchronous: </strong>Write 'What is the weather like right now?  Please write the answer and drop it on a desk near me NOW!' on a piece of paper, fold it and give it to a student.</li>
+                <li>Do some other stuff, until they drop off the answer</li>
+                <li><strong>Demonstrate synchronous: </strong>Ask a student, ***"What is the time?"***, and wait for the response</li>
+                <li>Compare our cook telling the dish washer "Wash this pot" / thread performing synchronous and asynchronous communication</li>
+            </ul>
+        </aside>
+    </section>
+    <section>
+        <h3>An Asyncronous Example</h3>
+        <pre><code class="hljs" data-trim contenteditable>
+            public static async Task&lt;string&gt; GetGoogleSearchResults(string query)
+            {
+                var r = await new HttpClient().GetAsync($"https://www.google.co.uk/search?q={ query }");
+                return await r.Content.ReadAsStringAsync();
+            }
+        </code></pre>
+        <aside class="notes">
+            <p>Go through the keywords in the slide, <strong>async, await, Task</strong></p>
+            <p>Then copy this code, show making sync to async call, and highlight the continuation</p>
+            <pre>
+public static void Main(string[] args)
+{
+    GetGoogleSearchResults("sync swimmers").GetAwaiter().GetResult();
+}
+
+public static async Task&lt;string&gt; GetGoogleSearchResults(string query)
+{
+    var r = await new HttpClient().GetAsync($"https://www.google.co.uk/search?q={ query }");
+    return await r.Content.ReadAsStringAsync();
+}
+            </pre>
         </aside>
     </section>
 </section>

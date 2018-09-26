@@ -111,7 +111,7 @@ Correcly update the status of the game, when a play is made.
 
 Manage exceptions and broken business rules.
 
-If the any of the requests cannot be processed due to broken business rule, then an Http Status code of `400 - Bad Request` should be returned, with a message in body stating what went wrong. 
+If the any of the requests cannot be processed due to broken business rule, then an Http Status code of `400 - Bad Request` should be returned, with a message in body stating what went wrong.
 
 Examples of broken business rules are:
 

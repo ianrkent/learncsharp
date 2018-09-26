@@ -1,0 +1,23 @@
+<section>
+    <section>
+        <h3>Extention Methods</h3>
+        <p>Make it <strong>look like</strong> you have added behaviour to a class</p>
+    </section>
+    <aside>
+        <p>Explain extention Methods</p>
+        <p>Some sample code to demo</p>
+        <pre>
+public static void Main(string[] args)
+{
+    Console.Write(new HttpClient().GoGoogleIt("sync swimmers").GetAwaiter().GetResult());
+    Console.ReadKey();
+}
+
+public static async Task&;lt;string&gt; GoGoogleIt(this HttpClient httpClient, string query)
+{
+    var response = await httpClient?.GetAsync($"https://www.google.co.uk/search?q={ query }");
+    return await response.Content.ReadAsStringAsync();
+}
+        </pre>
+    </aside>
+</section>
