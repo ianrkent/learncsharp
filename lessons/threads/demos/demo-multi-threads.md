@@ -1,4 +1,4 @@
-# Demo multithreads 
+# Demo multithreads
 
 ## Trainer Instructions
 
@@ -20,4 +20,3 @@
   - the fact that the main thread is also doing some cooking in the call to `Cooking.GoCook()`
 
 If you want to run it, modify `Main` to use the appropriate implementation
-

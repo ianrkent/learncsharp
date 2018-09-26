@@ -40,13 +40,17 @@ namespace ThreadingLab
             return false;
         }
 
-
-        public static IEnumerable<long> LongRange(long highValue)
+        public static IEnumerable<long> LongRange(long lowValue, long highValue)
         {
-            for (long i = 0; i <= highValue; i++)
+            for (long i = lowValue; i <= highValue; i++)
             {
                 yield return i;
             }
+        }
+
+        public static IEnumerable<long> LongRange(long highValue)
+        {
+            return LongRange(0, highValue);
         }
     }
 }
