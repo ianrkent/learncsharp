@@ -36,6 +36,18 @@ It must also handle an HTTP `GET` request on the same URL of `http://localhost:8
 [ "971b0a71-2569-4401-b722-32e13252b852", "7f151bfe-1aef-45c5-947f-4529a89d809a","6902406e-b6c0-4a42-aa19-b50688b86ed9" ]
 ```
 
+### Hints
+
+Start with a new dotnet core web api project (from template) 
+
+``` txt
+dotnet new webapi
+```
+
+[Build web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-2.1)
+
+You can use Postman or curl or Fiddler to craft Http Requests to hit your application and check the responses.
+
 ## Challenge 2
 
 ### Get full details of a single game
@@ -105,7 +117,7 @@ To allow plays to be made on the board, you application should accept an HTTP `P
 
 ## Challenge 3
 
-Correcly update the status of the game, when a play is made.
+Correctly update the status of the game, when a play is made.
 
 ## Challenge 4
 
