@@ -1,0 +1,203 @@
+<section>
+    <section>
+        <h3>Instrumentation</h3>
+        <h4>
+            <i>measuring instruments regarded collectively</i>
+        </h4>
+    </section>
+    <section data-background="images/inside_core.jpg" data-background-opacity="0.5">
+        <h3>Systems that are impossible to debug</h3>
+        <aside class="notes">
+            <p> pose the question to the class</p>
+            <div class="fragment fade-left">
+                <strong>
+                    <ul>
+                        <li>nuclear reactor cores</li>
+                        <li>aircraft engines and rocket boosters</li>
+                        <li>code running on thousands of globally distributed machines</li>
+                    </ul>
+                </strong>
+            </div>
+        </aside>
+        <div class="fragment fade-left">
+            <ul>
+                <li>Nuclear reactor cores</li>
+                <li>Aircraft engines and rocket Boosters</li>
+                <li>Code running on thousands of globally distributed machines</li>
+            </ul>
+        </div>
+    </section>
+    <section data-background="images/chernobyl-control-room.jpg" data-background-opacity="0.5">
+        <h3>Gathering data about your system</h3>
+        <aside class="notes">
+            <div class="fragment fade-left">
+                <ul>
+                    <li>Every system is designed to operate within a set of well known parameters</li>
+                    <li>When its running outside those parameters you need to be alerted of that</li>
+                    <li>Once you've been alerted you need enough information to bring things back under control</li>
+                    <li>When its out of control you need enough levers to pull to help the system recover</li>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="fragment fade-left">
+            <ul>
+                <li>Testing</li>
+                <li>Alerting</li>
+                <li>Logging and Telemetry</li>
+                <li>Configuration, Feature Toggles, Scaling</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Logging</h3>
+        <h4>The simplest kind of logging</h4>
+        <pre><code class="hljs" data-trim contenteditable>
+            try
+            {
+                Console.WriteLine("About to start executing.");
+                WorkThatCouldFail();
+                Console.WriteLine("Job succeeded!");
+            } 
+            catch (Exception e) 
+            {
+                Console.WriteLine(e.ToString());
+            }
+        </code></pre>
+        <div class="fragment fade-left">
+            <p>What are the problems with this kind of logging?</p>
+        </div>
+        <aside class="notes">
+            <div class="fragment fade-left">
+                <ul>
+                    <li>Only available on the console of the machine running the program</li>
+                    <li>Can't see when running as a background service</li>
+                    <li>No way to see just the most important logs</li>
+                    <li>Have to check every machine to see which is having the problem</li>
+                </ul>
+            </div>
+        </aside>
+    </section>
+    <section>
+        <h3>Logging</h3>
+        <h4>Slightly Better Logging</h4>
+        <pre><code class="hljs" data-trim contenteditable>
+            var log = new LoggerConfiguration()
+                .WriteTo.File("logs\\myapp.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            Log.Information("About to start executing.");
+            Log.Error(e);
+        </code></pre>
+        <div class="fragment fade-left">
+            <p>
+                <ul>
+                    <li>Timestamp</li>
+                    <li>Log Level</li>
+                    <li>Exception Message</li>
+                    <li>StackTrace</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+    <section>
+        <h3>Logging</h3>
+        <h4>Semantically</h4>
+        <div class="fragment fade-left">
+            <p>Treat logging like a database</p>
+        </div>
+        <div class="fragment fade-left">
+            <p>Separate each piece of information of interest</p>
+        </div>
+        <div class="fragment fade-left">
+            <pre><code class="hljs" data-trim contenteditable>
+            Log.Information("About to start processing", new {
+                Machine = "MyComputer",
+                Region = "North Europe",
+                IPAddress = "10.0.0.1"
+            });
+            Log.Error(e, new {
+                CustomerId = 4234,
+                ErrorCode = 1
+            });
+        </code></pre>
+        </div>
+        <div class="fragment fade-left">
+            <p>Allows for simple querying at the time you need it the most</p>
+        </div>
+    </section>
+    <section>
+        <h3>Logging for distributed systems</h3>
+        
+        <div class="fragment fade-left">
+            <p>Push logs to a central location</p>
+        </div>
+        <div class="fragment fade-left">
+            <p>Easy to search and visualise</p>
+        </div>
+        <div class="fragment fade-left">
+            <p>Can send alerts to let us know the system is struggling</p>
+        </div>
+        <div class="fragment fade-left">
+            <p>The place you choose needs to handle high load and be reliable</p>
+        </div>
+    </section>
+    <section>
+        <h3>Application Insights</h3>
+        <h4>A high performance and reliable application performance and monitoring platform</h4>
+        <p>
+            <img src="images/app-insights-logs.png" />
+        </p>
+    </section>
+    <section>
+        <h3>Lab Part 1</h3>
+        <p>
+            Let's give the logging a go on your solution, or you can use the bundled one.
+        </p>
+    </section>
+    <section>
+        <h3>Telemetry</h3>
+        <h4>Measuring and graphing the speed and performance of a running system</h4>
+        <p>
+            <img src="images/app-insights.png" />
+        </p>
+    </section>
+    <section>
+        <h3>Performance Issues</h3>
+        <h4>These can happen on a live system in the middle of the night</h4>
+        <p>
+            <ul>
+                <li>Network issues</li>
+                <li>Hardware resource limits</li>
+                <li>Performance degradation from systems we depend on</li>
+                <li>Code bugs</li>
+            </ul>
+        </p>
+    </section>
+    <section>
+        <h3>Telemetry to track</h3>
+        <h4>As much as you can!</h4>
+        <p>
+            <ul>
+                <li>Machine level metrics</li>
+                <li>Infrastructure metrics</li>
+                <li>Overall application performance</li>
+                <li>Code metrics</li>
+            </ul>
+        </p>
+    </section>
+    <section>
+        <h3>Lab Part 2</h3>
+        <p>
+            Time to track some metrics about your code!
+        </p>
+    </section>
+    <section>
+        <h3>Questions?</h3>
+        <p>Exercises
+            <ul>
+                <li>Write some queries based on your customEvents and customMetrics</li>
+                <li>Try creating your own custom portal dashboards</li>
+            </ul>
+        </p>
+    </section>
+</section>
