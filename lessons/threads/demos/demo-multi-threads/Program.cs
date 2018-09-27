@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
+using DemoMultiThreads_extensions;
+
+// using DemoMultiThreads_extensions;
 
 namespace DemoMultiThreads
 {
@@ -13,6 +19,16 @@ namespace DemoMultiThreads
             ThreadsImplementation.DemoWithThreads();
 
             Console.ReadLine();
+        }
+
+
+        private static IEnumerable<int> ToInfinityAndBeyound()
+        { 
+            int counter = 0;
+            do
+            {
+                yield return counter++;
+            } while (true);
         }
     }
 }
