@@ -1,27 +1,18 @@
 ﻿using System;
-using NUnit.Framework;
 
-namespace apprentice_learncsharp_2018_12
+namespace ConsoleApp.ExceptionDemo
 {
-    [TestFixture()]
-    public class CalculatorShould
+    public class Calcuator
     {
-
-        [Test]
-        public void SumAnArrayOfNumbers()
+        public static void DemoExceptions()
         {
-            var numbersToSum = new[] {1, 1, 1, 1, 1};
-            const int expectedSum = 5;
+            var numbersToSum = new[] { 1, 1, 1, 1, 1 };
 
             var calcuator = new Calcuator();
             var calculatedSum = calcuator.SumNumbers(numbersToSum);
-
-            Assert.AreEqual(expectedSum, calculatedSum);
+            System.Console.WriteLine($"The sum is {calculatedSum}");
         }
-    }
 
-    public class Calcuator
-    {
         public double SumNumbers(int[] data)
         {
             var sum = 0;

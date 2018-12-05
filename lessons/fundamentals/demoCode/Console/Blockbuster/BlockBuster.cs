@@ -1,33 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices.ComTypes;
 
-namespace apprentice_learncsharp_2018_12.Blockbuster
+namespace ConsoleApp.Blockbuster
 {
+
+    // Todo: Introduce a BetaMachine, but re-use the logic in SeekMovieStart by introducing a Generic
     public class PrepareVideo
     {
-        public void SeekMovieStart(VHSMachine vhsMachine)
+        public void SeekMovieStart(VHSMachine machine) 
         {
             // rewind to the beginning
             var hasRewoundToBeginning = false;
             do
             {
-                hasRewoundToBeginning = vhsMachine.Rewind(TimeSpan.FromMinutes(1));
+                hasRewoundToBeginning = machine.Rewind(TimeSpan.FromMinutes(1));
             } while (!hasRewoundToBeginning);
+
             // start playing the video
-            vhsMachine.Play();
+            machine.Play();
 
             // fastforward bit by bit to find blockbusters logo
-            while (!NotAtBlockbusterLogo(vhsMachine))
+            while (!NotAtBlockbusterLogo(machine))
             {
-                vhsMachine.FastForward(TimeSpan.FromSeconds(5));
+                machine.FastForward(TimeSpan.FromSeconds(5));
             }
 
             // Stop the machine!
-            vhsMachine.Stop();
+            machine.Stop();
         }
+
         private bool NotAtBlockbusterLogo(VHSMachine vhsMachine)
         {
             var currentPic = vhsMachine.CurrentImage;
